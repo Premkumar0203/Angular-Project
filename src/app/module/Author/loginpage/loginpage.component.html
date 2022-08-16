@@ -1,0 +1,42 @@
+<body>    
+    <form [formGroup]="myForm" (ngSubmit)="Login()">
+        <div class="container"> 
+            <h2> Author Login Page </h2> 
+            <table class="table table-striped" align="center">
+                <tr>
+                    <td>     
+                         <label for="Name"><b>Author Name : </b></label>
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Enter Author Name" name="name" id="name" 
+                        formControlName="name" >
+                        <span *ngIf="myForm.controls['name'].errors!=null 
+                        && myForm.controls['name'].dirty" class="error">
+                           <span *ngIf="!!myForm.controls['name'].errors['name']">
+                               Please enter a valid User Name 
+                        </span>
+                         </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="psw"><b>Password : </b></label>
+                    </td>
+                    <td>
+                        <input type="password" placeholder="Enter Password" name="psw" id="psw" 
+                        formControlName="password">
+                        <span *ngIf="myForm.controls['password'].errors!=null 
+                        && myForm.controls['password'].dirty" class="error">
+                        <span *ngIf="!!myForm.controls['password'].errors['password']">
+                        Please enter a valid Password </span></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                         <button class="btn btn-success" [disabled]="myForm.invalid" type="submit">Login</button>&nbsp; 
+                     </td>
+                </tr>
+            </table>
+        </div>   
+    </form>     
+</body>     

@@ -1,0 +1,96 @@
+<body>
+<div >
+  <form [formGroup]="myForm" (ngSubmit)="SearchBook()">
+    <h1> Book Search </h1>     
+      <table class="table table-striped" border ="0" align="center">
+          <tbody>
+                  <tr>
+                      <th>
+                          <Label>
+                              Category :
+                          </Label>
+                      </th>
+                      <th>
+                          <select name="category" formControlName="category"> 
+                              <option *ngFor = "let i of category">
+                                  {{i}}
+                              </option> 
+                           </select> 
+                      </th>
+                  </tr>
+                  <tr>
+                      <th>
+                          <Label>
+                              Author :
+                          </Label>
+                      </th>
+                      <th>
+                          <input type ="text" name = "authorName" formControlName="author">
+                      </th>
+                  </tr>
+                  <tr>
+                      <th>
+                          <Label>
+                              Price :
+                          </Label>
+                      </th>
+                      <th>
+                          <input type ="text" name = "price" value="0" formControlName="price">
+                      </th>
+                  </tr>
+                  <tr>
+                      <th>
+                          <Label>
+                              Publisher :
+                          </Label>
+                      </th>
+                      <th>
+                          <input type ="text" name = "publisher" formControlName="publisher">
+                      </th>
+                  </tr>
+                  <tr>
+                      <th colspan="2" >
+                          <button type="submit" class="btn btn-success" >Search Book</button>&nbsp;
+                          <a class="btn btn-success" routerLink="/Reader/ReaderHomePage"> Back </a>
+                      </th>
+                      
+                  </tr>
+          </tbody>
+  </table> 
+</form>
+</div>
+<div >
+    <p *ngIf=" errorMessage.length>0 ">Error: {{errorMessage}}</p>
+       <table class="table table-striped" border="1" align="center" *ngIf=" Books.length > 0">
+        <thead>
+            <tr> 
+                <th>Book Id</th>
+                <th>Title</th>
+                <th>Logo</th> 
+                <th>Category</th>
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Publisher Date</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th> Purchase </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of Books">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.category}}</td>
+                <td><img src= "{{ book.logo }}" height="100px" weight ="100px" object-fit="cover" > </td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishedDate}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.status}}</td>
+                <td><a class="btn btn-success" [routerLink]="['/Reader/BookPurchase',book.id]">
+                    Purchase Book</a> </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+</body>

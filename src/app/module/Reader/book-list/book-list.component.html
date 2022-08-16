@@ -1,0 +1,38 @@
+<body>
+            <div>
+               <h1>Book List</h1> 
+               <table class="table table-striped" border="1"  *ngIf="Books.length>0">
+                <thead>
+                    <tr>  
+                        <th>Book Id</th>
+                        <th>Title</th>
+                         <th>Logo</th> 
+                        <th>Category</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Publisher Date</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let book of Books;let i = index">
+                        <td>{{book.id}}</td>
+                        <td>{{book.title}}</td>
+                        <td>{{book.category}}</td>
+                        <td><img src= "{{ book.logo }}" height="100px" weight ="100px" object-fit="cover" > </td>
+                        <td>{{book.author}}</td>
+                        <td>{{book.publisher}}</td>
+                        <td>{{book.publishedDate}}</td>
+                        <td>{{book.price}}</td>
+                        <td>{{book.status}}</td>
+                    </tr>
+                </tbody>
+                
+            </table>
+            <p><a class="btn btn-success" routerLink="/Reader/ReaderHomePage" > Back </a></p>
+
+           
+            </div>
+</body>
+

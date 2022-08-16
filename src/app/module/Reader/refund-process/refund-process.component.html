@@ -1,0 +1,57 @@
+<body>
+    <form [formGroup]="myForm" (ngSubmit)="RefundProcess()" > 
+      <h1> Refund book </h1>       
+              <table class="table table-striped" align="center">
+              <tr>
+                  <td><label>EmailId : </label></td>  
+                  <td><input type="email" placeholder="Enter Email Id" id="emailId"
+                   name="emailId" formControlName="email">  
+                   <span *ngIf="myForm.controls['email'].errors!=null 
+                   && myForm.controls['email'].dirty" class="error">
+                      <span *ngIf="!!myForm.controls['email'].errors['email']">Please enter a valid email id</span>
+                  </span>
+                  <br></td>
+              </tr>
+              <tr>
+              <td>
+              <label>Book Id : </label>  </td>
+              <td><input type="text" placeholder="Enter Book Id " 
+                  id="bookId" name="bookId" formControlName="bookId"> 
+              <br> 
+              </td>
+              </tr>
+              <tr>
+                  <td colspan="2">
+                       <button class="btn btn-success" [disabled]="myForm.invalid" type="submit" > Refund </button>&nbsp;
+                       <a class="btn btn-success" routerLink="/Reader/ReaderHomePage"> Back </a> 
+                  </td>
+              </tr>
+          </table>
+      </form>
+      <div>
+        <p *ngIf=" errorMessage.length>0 ">Error: {{errorMessage}}</p>
+           <table class="table table-striped" border="1" align="center" *ngIf=" RefundData.length > 0">
+            <thead>
+                <tr> 
+                    <th>refund Id</th>
+                    <th>Book Id</th>
+                    <th>Name</th>
+                    <th>Email Id</th> 
+                    <th>Refund Date</th>
+                    <th>Payment Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let book of RefundData">
+                    <td>{{book.refundId}}</td>
+                    <td>{{book.bookId}}</td>
+                    <td>{{book.name}}</td>
+                    <td>{{book.emailId}}</td>
+                    <td>{{book.date | date }}</td>
+                    <td>{{book.paymentId}}</td>
+                  
+                </tr>
+            </tbody>
+        </table>
+        </div>
+</body>

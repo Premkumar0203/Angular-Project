@@ -1,0 +1,116 @@
+
+####Read all Books:
+
+GET http://3.110.184.18:9080/api/v1/digitalbooks/author/books/
+
+######Read Author List
+
+GET http://3.110.184.18:9080/api/v1/digitalbooks/author/
+
+
+#####Create Author 
+
+POST http://3.110.184.18:9080/api/v1/digitalbooks/author/signup
+content-type: application/json
+
+{  
+    "userName": "Prem",  
+    "password": "Pass@123"
+}  
+
+####Login Author:
+
+
+POST http://3.110.184.18:9080/api/v1/digitalbooks/author/authenicate
+content-type: application/json
+
+{  
+    "username": "prem",  
+    "password": "Pass@123"
+}  
+
+
+#####Create Book:
+
+
+POST http://3.110.184.18:9080/api/v1/digitalbooks/author/books
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmVtIiwiaWF0IjoxNjYwMzc5NTk0LCJleHAiOjE2NjAzOTc1OTR9.70cqFpGx4A5HzKqYYFrF_14lvT2DmMvnvUBVdn_zFYRqbxrQxfK-Ntq-dncunGHWZAaRyxqvDTVl4xD1wcaokA
+
+{
+    "logo":"c:/picture/ironman.jfif",
+    "title":"The Harry Porter",
+    "category":"fantasy",
+    "price":"1000",
+    "publisher":"Kelvin",
+    "content":"The Harry Porter",
+    "status":"1"
+}
+
+#### Get Books related to Author 
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/author/GetBooks
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmVtIiwiaWF0IjoxNjYwMTk0MDg2LCJleHAiOjE2NjAyMTIwODZ9.kZO13jPM4K3ZkzOHtjrljTLrjZyOtDYy57DaN9De0enCaBgJIDMmsV7J2mvvugXO27zwk8lPu3mJyImHFn1wOw
+
+
+#####Edit Book:
+
+
+post http://3.110.184.18:9080/api/v1/digitalbooks/author/books/1
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmVtIiwiaWF0IjoxNjYwMTk0MDg2LCJleHAiOjE2NjAyMTIwODZ9.kZO13jPM4K3ZkzOHtjrljTLrjZyOtDYy57DaN9De0enCaBgJIDMmsV7J2mvvugXO27zwk8lPu3mJyImHFn1wOw
+
+{
+   
+    "price":"5000",
+    "publisher":"Peterson"
+}
+
+##### Chnage Status of Book:
+
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/author/books/1/status/1
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJwcmVtIiwiaWF0IjoxNjYwNDA2Njc4LCJleHAiOjE2NjA0MjQ2Nzh9.dy1tEGcjGG2P4iJgYhzXEQYQCsCZfSzfzXsdmxmFQRZfEjMX4K1DErcVSuWLm-dFejJqSUR8vaLfGS5BH-y1ZQ
+
+
+####Search Book
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/books/search?category=&author=&price=0&publisher=
+
+
+
+####Purchase Book
+post http://3.110.184.18:9080/api/v1/digitalbooks/books/buy
+Content-Type: application/json
+
+{
+    "bookId" :1,
+    "name" : "premraj",
+    "emailId" : "premkumar02mar@gmail.com"
+}
+
+
+
+##### View Transaction History
+get http://3.110.184.18:9080/api/v1/digitalbooks/readers?emailId=premkumarmar02@gmail.com
+
+
+#### View Book Using Book Id
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/readers/premkumarmar02@gmail.com/books/1
+
+##### View Book using paymentid
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/readers/premkumarmar02@gmail.com/book?PaymentId=11082022135703
+
+#### View Invoice
+
+get http://3.110.184.18:9080/api/v1/digitalbooks/readers/premkumarmar02@gmail.com/invoice?PaymentId=11082022135703
+
+
+##### Refund 
+http://3.110.184.18:9080/api/v1/digitalbooks/readers/premkumarmar02@gmail.com/books/1/refund
+
+
+

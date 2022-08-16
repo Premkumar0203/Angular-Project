@@ -1,0 +1,77 @@
+<body>
+  <form [formGroup]="myForm" (ngSubmit)="fetchBook()" > 
+    <h1> View Book </h1> 
+            <table class="table table-striped" align="center">
+            <tr>
+                <td><label>EmailId : </label></td>  
+                <td><input type="email" placeholder="Enter Email Id" id="emailId"
+                 name="emailId" formControlName="email">  
+                 <span *ngIf="myForm.controls['email'].errors!=null 
+                 && myForm.controls['email'].dirty" class="error">
+                    <span *ngIf="!!myForm.controls['email'].errors['email']">Please enter a valid email id</span>
+                </span>
+                <br></td>
+            </tr>
+            <tr>
+            <td>
+            <label>Search By: </label>  </td>
+            <td><select name="category" formControlName="searchBy" > 
+                <option *ngFor = "let i of optionList">
+                    {{i}}
+                </option> 
+             </select> 
+             <span *ngIf="myForm.controls['searchBy'].errors!=null 
+                 && myForm.controls['searchBy'].dirty" class="error">
+                    <span *ngIf="!!myForm.controls['searchBy'].errors['searchBy']">
+                        Please select searchBy option</span>
+            </span>
+            </td>
+            </tr>
+            <tr>
+            <td>
+            <label>Search By Value : </label>  </td>
+            <td><input type="text" placeholder="Enter search by value " 
+                id="id" name="id" formControlName="id"> 
+            <br> 
+            </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                     <button class="btn btn-success" [disabled]="myForm.invalid" type="submit" >search</button>&nbsp; 
+                     <a class="btn btn-success" routerLink="/Reader/ReaderHomePage"> Back </a>
+                </td>
+            </tr>
+        </table>
+    </form>
+<div>
+    <p *ngIf=" errorMessage.length>0 ">Error: {{errorMessage}}</p>
+       <table  class="table table-striped" border="1" align="center" *ngIf=" Books.length > 0">
+        <thead>
+            <tr> 
+                <th>Book Id</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Logo</th> 
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Publisher Date</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let book of Books">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.category}}</td>
+                <td><img src= "{{ book.logo }}" height="100px" weight ="100px" object-fit="cover" > </td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishedDate}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.status}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </body>

@@ -1,0 +1,56 @@
+<body>
+    
+    <div>
+        <p>  <button class="btn btn-success" (click)="Logout()" > Logout </button>
+           &nbsp; </p>
+       <h1>Book List Belong to Logged Author </h1> 
+
+       <span *ngIf=" errorMessage.length>0 "> Status: {{errorMessage}} </span>
+       <hr>
+
+       <table class="table table-striped" align="center" border="1" >
+        <thead>
+            <tr>  
+                <th>Book Id</th>
+                <th>Title</th>
+                <th>Category</th> 
+                 <th>Logo</th> 
+                <th>Author</th>
+                <th>Publisher</th>
+                <th>Publisher Date</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Edit Book</th>
+                <th>Change Status ( 1- Active,2-Unactive ) </th>
+            </tr>
+        </thead>
+        <tbody  *ngIf="Books.length == 0">
+            <td colspan="11"> No Book Available</td>
+        </tbody>
+        <tbody *ngIf="Books.length>0">
+            <tr *ngFor="let book of Books;let i = index">
+                <td>{{book.id}}</td>
+                <td>{{book.title}}</td>
+                <td>{{book.category}}</td>
+                <td><img src= "{{ book.logo }}" height="100px" weight ="100px" object-fit="cover" > </td>
+                <td>{{book.author}}</td>
+                <td>{{book.publisher}}</td>
+                <td>{{book.publishedDate}}</td>
+                <td>{{book.price}}</td>
+                <td>{{book.status}}</td>
+                <td> <a class="btn btn-success" [routerLink]="['/Author/EditBook',book.id]">
+                    Edit Book</a>
+                </td>
+                <td><button class="btn btn-success" (click)="ChangeStatusButton(book.id,book.status)"> Change Status </button> </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="11" >
+                    <button class="btn btn-success" (click)="CreateBook()" > Create Book</button>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+    </body>

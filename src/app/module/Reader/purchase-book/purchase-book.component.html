@@ -1,0 +1,39 @@
+<body>
+    <form [formGroup]="myForm" (ngSubmit)="PurchaseBook()" > 
+      <h1> Book Purchase </h1>    
+      <hr>
+      <p *ngIf=" errorMessage.length>0 ">Status: {{errorMessage}}</p>   
+   
+              <table class="table table-striped" align="center">
+              <tr>
+                        <td><label>Book Id : </label></td>  
+                        <td><label> {{ bookId }} </label></td>  
+              </tr>
+              <tr>
+                <td>
+                <label>Namee : </label>  </td>
+                <td><input type="text" placeholder="Enter Name" 
+                    id="name" name="name" formControlName="name"> 
+                <br> 
+                </td>
+                </tr>
+              <tr>
+                  <td><label>EmailId : </label></td>  
+                  <td><input type="email" placeholder="Enter Email Id" id="emailId"
+                   name="emailId" formControlName="emailId">  
+                   <span *ngIf="myForm.controls['emailId'].errors!=null 
+                   && myForm.controls['emailId'].dirty" class="error">
+                      <span *ngIf="!!myForm.controls['emailId'].errors['emailId']">Please enter a valid email id</span>
+                  </span>
+                  <br></td>
+              </tr>
+              
+              <tr>
+                  <td colspan="2">
+                       <button class="btn btn-success" [disabled]="myForm.invalid" type="submit" > Purchase </button>&nbsp; 
+                       <a class="btn btn-success" routerLink="/Reader/ReaderHomePage"> Back </a>
+                    </td>
+              </tr>
+          </table>
+      </form>
+</body>

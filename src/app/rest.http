@@ -1,0 +1,35 @@
+
+
+GET http://3.6.126.220:9090/api/v1/digitalbooks/author/books/1/status/2
+
+###
+
+GET http://3.6.126.220:9090/api/v1/digitalbooks/author/
+
+####
+
+POST http://3.6.126.220:9090/api/v1/digitalbooks/author/signup
+
+content-type: application/json
+
+{  
+    "userName": "Author",  
+    "password": "Pass@123"
+}  
+
+#####
+
+POST http://3.6.126.220:9090/api/v1/digitalbooks/author/authenicate
+
+{  
+    "username": "Author",  
+    "password": "Pass@123"
+}  
+
+
+#####
+GET http://3.6.126.220:9090/api/v1/digitalbooks/readers/premkumarmar02@gmail.com/books
+
+
+#####
+GET http://3.6.126.220:9090/api/v1/digitalbooks/books/search?category=&author=&price=0&publisher=

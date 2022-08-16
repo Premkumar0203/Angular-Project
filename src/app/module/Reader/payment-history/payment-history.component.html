@@ -1,0 +1,42 @@
+<body>
+    <form [formGroup]="myForm" (ngSubmit)="fetchPaymentHistory()" >
+        <h1>View Purchase History</h1>
+            <label>EmailId : </label>  
+            <input type="email" placeholder="Enter Email Id" id="emailId" 
+            name="emailId" formControlName="emailId" /> 
+            <span *ngIf="myForm.controls['emailId'].errors!=null 
+            && myForm.controls['emailId'].dirty" class="error">
+               <span *ngIf="!!myForm.controls['emailId'].errors['emailId']">
+                Please enter a valid email id</span>
+           </span>
+            <br> 
+            <button type="submit" class="btn btn-success" [disabled]="myForm.invalid" >search</button>&nbsp; 
+            <a class="btn btn-success" routerLink="/Reader/ReaderHomePage"> Back </a>
+
+    </form>
+    <div>
+    <p *ngIf=" errorMessage.length>0 ">Error: {{errorMessage}}</p>
+       <table class="table table-striped" border="1" align="center" *ngIf="paymentHistory.length>0">
+        <thead>
+            <tr> 
+                <th>Payment Id</th>
+                <th>Payment Date</th> 
+                <th>Book Id</th>
+                <th>Name</th>
+                <th>EmailId</th> 
+                
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let paymentHistory of paymentHistory;let i = index">
+                <td>{{paymentHistory.paymentId}}</td>
+                <td>{{paymentHistory.date | date }}</td>
+                <td>{{paymentHistory.bookId}}</td>
+                <td>{{paymentHistory.emailId}}</td>
+                <td>{{paymentHistory.name}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    </body>
